@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <title>Google Maps Polygon Coordinates Tool This is the page Django uses!</title>
+  <link rel="stylesheet" href="/static/style.css">
+
+</head>
+
+<body onload="initialize()">
+  <h3>Select boroughs</h3>
+  <div id="map-canvas"></div>
+  <div class="lngLat"><span class="one">Lat</span><span class="two">,Lng</span></div>
+  <textarea id="info"></textarea>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAQR42UsnwqyC5RWv498T3Uu5bJn93_1-U"
+      async defer></script>
+
+{% load static %}
+<script src="{% static "index2.js" %}"></script>
+
+<form action='post2' method="POST"> {% csrf_token %}
+    <label for="your_name">Size: </label>
+    <input id="your_name" type="number" name="size">
+    <br>
+    <label for="your_name">Inhabitants: </label>
+    <input id="your_name" type="number" name="inhabitants">
+    <br>
+    <label for="your_name">Budget: </label>
+    <input id="your_name" type="number" name="budget">
+    <br>
+    <input type="submit" value="Find solution" style="float: right;">
+</form>
+<!--for each borough fill in 0, 1 or 2-->
+<h1> For each borough fill in 0, 1 or 2.
+<form action='post2' method="POST"> {% csrf_token %}
+    <label for="your_name">Build: </label>
+    <input id="your_name" type="number" name="build">
+    <br>
+    <label for="your_name">Influence: </label>
+    <input id="your_name" type="number" name="influence">
+    <br>
+    <label for="your_name">Regulations: </label>
+    <input id="your_name" type="number" name="regulations">
+    <br>
+    <input type="submit" value="Find solution" style="float: right;">
+</form>
+
+
+<div>
+<table>
+  <tr>
+    <!-- <th>Size</th> -->
+    <!-- <th>Inhabitants</th> -->
+    <!-- <th>Budget</th> -->
+    <!-- <th>Total</th> -->
+    <th>Best</th>
+  </tr>
+  {% for x in test %}
+  <tr>
+    <!-- <td>{{x.size}}</td> -->
+    <!-- <td>{{x.inhabitants}}</td> -->
+    <!-- <td>{{x.budget}}</td> -->
+    <!-- <td>{{x.total}}</td> -->
+    <td>{{x.best}}</td>
+  </tr>
+  {% endfor %}
+</table>
+</div>
+
+</body>
+
+</html>
